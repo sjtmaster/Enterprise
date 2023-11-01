@@ -1,10 +1,8 @@
 const request = axios.create();
-request.interceptors.request.use(req=>{
-    console.log("拦截req",req);
-    return req;
-})
 request.interceptors.response.use(res => {
-    console.log("拦截",res);
+    if(res.data && res.data.code == 4000){
+        console.log("错误信息",res.data);
+    }
     return res.data
   })
 

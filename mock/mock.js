@@ -33,6 +33,11 @@ function fail (msg){
     return err;
 }
 
+/**
+ * 请求参数解析
+ * @param {*} url 请求地址 
+ * @returns get请求参数
+ */
 function parseQueryString(url){
     const params = {};
     const queryString = url?.split("?")[1];
@@ -61,15 +66,21 @@ Mock.mock('/api/recommended-list', 'get', () => {
 })
 
 Mock.mock(/\/api\/news\//, 'get', (options) => {
-    console.log("详情",options);
-    return {
-        code:0,
-        data:[1,2,3]
-    };
+    if(!options || !options.url){
+        return fail('错误请求');
+    }
+    let id = options.url.replace("/api/news/","");
+    if(!id){
+        return fail('请求参数错误');
+    }
+    let detail = newsDetail[id]
+    if(!detail){
+        return fail('非法id,请求数据不存在！');
+    }
+    return success(detail);
 })
 
 Mock.mock(/\/api\/news/, 'get', (options) => {
-    console.log("分页",options);
     if(!options || !options.url){
         return fail('错误请求');
     }
@@ -78,9 +89,9 @@ Mock.mock(/\/api\/news/, 'get', (options) => {
         return fail('请求参数错误');
     }
     let current = Number(query.page);
-    let pageSize = Number(pageSize);
+    let pageSize = Number(query.pageSize);
     let links = {total:newsList.length,current,pageSize};
-    let data = newsList.slice((current-1)*pageSize,);
+    let data = newsList.slice((current-1)*pageSize,pageSize*current-1);
     return success(data,links);
 })
 
