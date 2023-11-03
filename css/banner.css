@@ -1,0 +1,73 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#slideshow{
+    width: 100%;
+    height: 700px;
+    /* 设置这个东西在页面是水平居中 */
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    /* left: 800px;
+    top: 400px; */
+}
+
+#slideshow img{
+    width: 100%;
+    /* 图片采用绝对定位 全部在左上角 重叠在一起 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* 初始化设置不透明度为0 图片都看不到 */
+    opacity: 0;
+    /* 定义一个关于透明度的 transition*/
+    transition: opacity 1s linear;
+}
+
+#slideshow img.active{
+    /* 有active类的图片不透明度为1 也就是显示图片 */
+    opacity: 1;
+}
+
+/* 设置咱们页码的样式 */
+#slideshow div{
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+}
+#slideshow span{
+    display: inline-block;
+    width: 25px;
+    /* 当页面只有一行文本时候height就等于line-height */
+    line-height: 25px;
+    border-radius: 25px;
+    background-color: white;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+#slideshow span.active{
+    background: #ffdd55;
+    color: white;
+}
+
+/* 设置图片描述文本样式 */
+#slideshow p{
+    position: absolute;
+    top: 30px;
+    left: -400px;
+    line-height: 30px;
+    padding: 5px 30px;
+    font-size: 20px;
+    color: white;
+    background-color: rgba(100, 100, 100, 0.6);
+    opacity: 0;
+    transition: all 0,5s;
+}
+#slideshow p.active{
+    left: 0;
+    opacity: 1;
+}

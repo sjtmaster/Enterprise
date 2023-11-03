@@ -7,16 +7,17 @@
     <title>Enterprise</title>
     <link rel="stylesheet" href="./css/common.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/mockjs@1.1.0/dist/mock.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="lib/include.js"></script>
-    <script type="module" src="./index.js"></script>
+    <script src="lib/template.js"></script>
 </head>
 <body>
-    <include src="common/header.html"></include>
-    <include src="common/banner.html"></include>
+    <!-- <include src="common/header.html"></include> -->
+    <div id="header"></div>
+    <!-- <include src="common/banner.html"></include> -->
     <include src="common/footer.html"></include>
-    
-    
+    <div id="banner"></div>
+    <script type="module" src="./index.js"></script>
 </body>
 </html>
